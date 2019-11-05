@@ -1,0 +1,83 @@
+﻿@model IEnumerable<MetroWeb.Models.tb_Plan_Problema>
+@{
+    Layout = ViewBag.RutaLayout;
+    ViewBag.Title = "Problema";
+
+
+}
+
+
+
+
+
+
+<h2>Problema</h2>
+<hr />
+<div>
+    <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#agregarProblemaId">Agregar</button>
+</div>
+<hr />
+
+<div class="modal fade" id="agregarProblemaId" role="dialog" aria-labelledby="problemaAgregarLabelId" aria-hidden="true" >
+    @Html.Action("Create", "Problema")
+</div>
+
+<table class="table">
+    <tr class="table-dark">
+        <th>
+            Descripción
+        </th>
+        <th>
+            Área
+        </th>
+        <th>
+            Lider
+        </th>
+        <th>
+            Origen
+        </th>
+        <th>
+            Tipo de Problema
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tb_Orga_Area.Descripcion_Area)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tb_Orga_Usuarios.NombreCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tb_Plan_Origen.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tb_Plan_Tipo_Problema.descripcion)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id_problema }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id_problema }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id_problema })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+@section scripts{
+    <script type="text/javascript">
+        
+        //Propiedad del drawer: Cambiar color del item
+            $("#planAccionIconId").attr("src", "/Icons/problem_hover.svg");
+
+            $("#planAccionSubMenuAId").addClass("sub-active");
+    </script>
+}

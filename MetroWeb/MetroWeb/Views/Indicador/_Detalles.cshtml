@@ -1,0 +1,384 @@
+﻿@model MetroWeb.Models.tb_Indi_Indicador
+    
+
+
+    <div>
+        <div class="modal-header">
+            <h5 class="modal-title" id="detallarIndicadorTilutoId">Detalle Indicador</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <ul class="nav nav-tabs">
+            <li  class="nav-item ">
+                <a id="generalNavDetalleId" class="nav-link" href="#">Información General</a>
+            </li>
+            <li  class="nav-item">
+                <a id="medicionNavDetalleId" class="nav-link" href="#">Medición</a>
+            </li>
+            <li class="nav-item">
+                <a id="capturaNavDetalleId" class="nav-link" href="#">Información de Captura</a>
+            </li>
+        </ul>
+        <div class="modal-body" style="height:700px !important;">
+            <div id="generalTableIndicadorId">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <label class="col-form-label">
+                                <b>Nombre:</b>
+                            </label>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.nombre_indicador)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="col-form-label">
+                                <b>
+                                    Código:
+                                </b>
+
+                            </label>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.abreviatura)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                            <label class="col-form-label">
+                                <b>
+                                    Área:
+                                </b>
+
+                            </label>
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.tb_Orga_Area.Descripcion_Area)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="col-form-label">
+                                <b>
+                                    Tipo:
+                                </b>
+                            </label>
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.tb_Indi_Tipo_Indicador.descripcion)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="col-form-label">
+                                <b>
+                                    Sistemas de Gestión:
+                                </b>
+
+                            </label>
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.sistemasGestionJoin)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="col-form-label">
+                                <b>¿Es Público?:</b>
+                            </label>
+                        </td>
+
+                        <td>
+
+                            @ViewBag.EsPublico
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div id="medicionTableIndicadorId">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <label class="col-form-label">
+                                <b>Frecuencia de Medición:</b>
+                            </label>
+                        </td>
+
+                        <td>
+                            @ViewBag.FrecuenciaMedicion
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="col-form-label">
+                                <b>
+                                    Meta Mínima:
+                                </b>
+
+                            </label>
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.meta_minima)%
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="col-form-label">
+                                <b>
+                                    Meta Nominal:
+                                </b>
+
+                            </label>
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.meta_nominal)%
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="col-form-label">
+                                <b>
+                                    Meta Máxima:
+                                </b>
+
+                            </label>
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.meta_maxima)%
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="col-form-label">
+                                <b>Usuario Alimentador:</b>
+                            </label>
+                        </td>
+
+                        <td>
+                            @ViewBag.UsuarioAlimentador
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="capturaTableIndicadorId">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <label class="col-form-label">
+                                <b>Usa Numerador y Denominador:</b>
+                            </label>
+                        </td>
+                        <td>
+                            @ViewBag.EsNumeradorDenominador
+                        </td>
+                    </tr>
+                    @if (ViewBag.EsNumeradorDenominador == "Sí")
+                    {
+                        <tr>
+                            <td>
+                                <label class="col-form-label">
+                                    <b>Descripción de Numerador:</b>
+                                </label>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.descripcion_numerador)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="col-form-label">
+                                    <b>Descripción de Denominador:</b>
+                                </label>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.descripcion_denominador)
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>
+                                <label class="col-form-label">
+                                    <b>Descripción de Valor Único:</b>
+                                </label>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(model => model.descripcion_valor_unico)
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                <hr />
+                <div id="sandbox-container" class="row">
+                    <div class="input-daterange input-group col-sm-12 col-md-6 col-lg-6" id="datepicker">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="input-sm form-control" name="start" id="inicioDetalleChart" style="background-color: white" readonly  />
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">a</span>
+                        </div>
+                        <input type="text" class="input-sm form-control" name="end" id="finalDetalleChart" style="background-color: white" readonly/>
+                    </div>
+                </div>
+                <div>
+                    <canvas id="detallesChart" style="position: relative; height:60vh; width:80vw"></canvas>
+                </div>
+
+            </div>
+            
+        </div>
+
+
+    </div>
+<script>
+    
+    $("#generalNavDetalleId").addClass("active");
+    $("#medicionTableIndicadorId").hide();
+    $("#capturaTableIndicadorId").hide();
+    $("li>a").click(function(){
+      if (!$(this).hasClass("active")) {
+        $("a.active").removeClass("active");
+        $(this).addClass("active");
+      }
+    });
+
+    $("#medicionNavDetalleId").click(function (e) {
+        
+        $("#generalTableIndicadorId").hide();
+        $("#medicionTableIndicadorId").show();
+        $("#capturaTableIndicadorId").hide();
+    });
+    $("#generalNavDetalleId").click(function (e) {
+        
+        $("#generalTableIndicadorId").show();
+        $("#medicionTableIndicadorId").hide();
+        $("#capturaTableIndicadorId").hide();
+    });
+    $("#capturaNavDetalleId").click(function (e) {
+        
+        $("#generalTableIndicadorId").hide();
+        $("#medicionTableIndicadorId").hide();
+        $("#capturaTableIndicadorId").show();
+    });
+
+            $.ajax({
+        url: '@Url.Action("Grafico", "Indicador")',
+        data: {id: '@ViewBag.IndicadorId'},
+        type: "GET",
+        success: function (result) {
+            var ctx = document.getElementById('detallesChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    datasets: result
+
+                },
+                options: {
+                    responsive: true,
+                    barValueSpacing: 20,
+                    legend: {
+                        display: false,
+                        labels: {
+                            fontColor: 'rgb(255, 99, 132)'
+                        },
+                        position: "bottom"
+                    },
+                    scales: {
+                        xAxes: [{
+                            labels: ['Enero','Febrero','Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                            barThickness: 18,  
+                            maxBarThickness: 20
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    title: {
+                                display: true,
+                                text: 'Custom Chart Title'
+                            }
+                }
+            });
+        }
+        });
+
+
+    $('#finalDetalleChart').change(function () {
+        var startDate = $('#inicioDetalleChart').val();
+        var endDate =  $('#finalDetalleChart').val();
+        $.ajax({
+        url: '@Url.Action("GraficoFiltrado", "Indicador")',
+        data: {id: '@ViewBag.IndicadorId', startDate:startDate, endDate:endDate},
+        type: "GET",
+        success: function (result) {
+            var ctx = document.getElementById('detallesChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    datasets: result
+
+                },
+                options: {
+                    responsive: true,
+                    barValueSpacing: 20,
+                    legend: {
+                        display: false,
+                        labels: {
+                            fontColor: 'rgb(255, 99, 132)'
+                        },
+                        position: "bottom"
+                    },
+                    scales: {
+                        xAxes: [{
+                            labels: ['Enero','Febrero','Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                            barThickness: 18,  
+                            maxBarThickness: 20
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    title: {
+                                display: true,
+                                text: 'Custom Chart Title'
+                            }
+                }
+            });
+        }
+        });
+
+    })
+
+    $('#sandbox-container .input-daterange').datepicker({
+        startView: 1,
+        minViewMode: 1,
+        maxViewMode: 2,
+        format: 'M-yyyy',
+        language: 'es'
+    });
+
+    
+
+</script>
+
+    

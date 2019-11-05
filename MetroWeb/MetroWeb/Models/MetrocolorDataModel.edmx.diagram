@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3ee2b68daa20423ca2a0a1c2023c968b" Name="Diagram1">
+        <EntityTypeShape EntityType="BDGestionIntegradaModel.tb_Orga_Area" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDGestionIntegradaModel.tb_Orga_SistemasGestion" Width="1.5" PointX="11.875" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDGestionIntegradaModel.tb_Orga_Usuarios" Width="1.5" PointX="8.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDGestionIntegradaModel.tb_Plan_Origen" Width="1.5" PointX="2.375" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDGestionIntegradaModel.tb_Plan_Problema" Width="1.5" PointX="4.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDGestionIntegradaModel.tb_Plan_Problema_SistemaGestion" Width="1.5" PointX="7.625" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDGestionIntegradaModel.tb_Plan_Tipo_Problema" Width="1.5" PointX="4.375" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="BDGestionIntegradaModel.FK_tb_Plan_Problema_tb_Orga_Area" ManuallyRouted="false" />
+        <AssociationConnector Association="BDGestionIntegradaModel.FK_tb_Plan_Problema_SistemaGestion_tb_Orga_SistemasGestion" ManuallyRouted="false" />
+        <AssociationConnector Association="BDGestionIntegradaModel.FK_tb_Plan_Problema_tb_Orga_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="BDGestionIntegradaModel.FK_tb_Plan_Problema_tb_Plan_Origen" ManuallyRouted="false" />
+        <AssociationConnector Association="BDGestionIntegradaModel.FK_tb_Plan_Problema_SistemaGestion_tb_Plan_Problema" ManuallyRouted="false" />
+        <AssociationConnector Association="BDGestionIntegradaModel.FK_tb_Plan_Problema_tb_Plan_Tipo_Problema" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BDGestionIntegradaModel.tb_Indi_Indicador" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="BDGestionIntegradaModel.tb_Indi_Indicador_SistemaGestion" Width="1.5" PointX="12.25" PointY="6.125" />
+        <EntityTypeShape EntityType="BDGestionIntegradaModel.tb_Indi_Tipo_Indicador" Width="1.5" PointX="3.5" PointY="13.5" />
+        <AssociationConnector Association="BDGestionIntegradaModel.FK_tb_Indi_Indicador_SistemaGestion_tb_Indi_Indicador" />
+        <AssociationConnector Association="BDGestionIntegradaModel.FK_tb_Indi_Indicador_tb_Indi_Tipo_Indicador" />
+        <AssociationConnector Association="BDGestionIntegradaModel.FK_tb_Indi_Indicador_tb_Orga_Area" />
+        <AssociationConnector Association="BDGestionIntegradaModel.FK_tb_Indi_Indicador_SistemaGestion_tb_Orga_SistemasGestion" />
+        <EntityTypeShape EntityType="BDGestionIntegradaModel.tb_Orga_Estados" Width="1.5" PointX="5.75" PointY="9.625" />
+        <AssociationConnector Association="BDGestionIntegradaModel.FK_tb_Indi_Indicador_tb_Orga_Estados" />
+        <AssociationConnector Association="BDGestionIntegradaModel.FK_tb_Indi_Tipo_Indicador_tb_Orga_Estados" />
+        <AssociationConnector Association="BDGestionIntegradaModel.FK_tb_Indi_Indicador_tb_Orga_Usuarios" />
+        <EntityTypeShape EntityType="BDGestionIntegradaModel.tb_Indi_Indicador_Alimentar" Width="1.5" PointX="3.5" PointY="10.125" />
+        <AssociationConnector Association="BDGestionIntegradaModel.FK_tb_Indi_Indicador_Alimentar_tb_Indi_Indicador" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

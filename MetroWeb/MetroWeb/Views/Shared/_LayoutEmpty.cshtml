@@ -1,0 +1,55 @@
+﻿
+@{
+    Layout = null;
+
+}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - MetroWeb</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/stylesheet.css">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+
+<body>
+    
+    <div class="container">
+        <div>
+            <div class="container">
+                @RenderBody()
+                <hr />
+            </div>
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @Scripts.Render("~/Scripts/js")
+            <script>
+                $('.js-tilt').tilt({
+                    scale: 1.1
+                })
+
+                
+
+            </script>
+            @Scripts.Render("~/Scripts/main")
+            @RenderSection("scripts", required: false)
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+

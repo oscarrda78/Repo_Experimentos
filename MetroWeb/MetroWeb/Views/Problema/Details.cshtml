@@ -1,0 +1,66 @@
+﻿@model MetroWeb.Models.tb_Plan_Problema
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tb_Plan_Problema</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.flag_eliminado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.flag_eliminado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_Orga_Area.Descripcion_Area)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_Orga_Area.Descripcion_Area)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_Orga_Usuarios.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_Orga_Usuarios.Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_Plan_Origen.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_Plan_Origen.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tb_Plan_Tipo_Problema.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tb_Plan_Tipo_Problema.descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_problema }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

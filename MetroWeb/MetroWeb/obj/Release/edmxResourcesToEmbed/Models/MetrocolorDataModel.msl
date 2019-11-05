@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BDGestionIntegradaModelStoreContainer" CdmEntityContainer="BDGestionIntegradaEntitiesContext">
+    <EntitySetMapping Name="tb_Orga_Area">
+      <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Orga_Area">
+        <MappingFragment StoreEntitySet="tb_Orga_Area">
+          <ScalarProperty Name="Id_Area" ColumnName="Id_Area" />
+          <ScalarProperty Name="Descripcion_Area" ColumnName="Descripcion_Area" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Abreviatura" ColumnName="Abreviatura" />
+          <ScalarProperty Name="Id_Estado" ColumnName="Id_Estado" />
+          <ScalarProperty Name="Usuario_Creacion" ColumnName="Usuario_Creacion" />
+          <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+          <ScalarProperty Name="Usuario_Modificacion" ColumnName="Usuario_Modificacion" />
+          <ScalarProperty Name="Fecha_Modificacion" ColumnName="Fecha_Modificacion" />
+          <ScalarProperty Name="Flag_Eliminado" ColumnName="Flag_Eliminado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_Orga_SistemasGestion">
+      <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Orga_SistemasGestion">
+        <MappingFragment StoreEntitySet="tb_Orga_SistemasGestion">
+          <ScalarProperty Name="Id_SistemaGestion" ColumnName="Id_SistemaGestion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Id_Estado" ColumnName="Id_Estado" />
+          <ScalarProperty Name="Usuario_Creacion" ColumnName="Usuario_Creacion" />
+          <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+          <ScalarProperty Name="Usuario_Modificacion" ColumnName="Usuario_Modificacion" />
+          <ScalarProperty Name="Fecha_Modificacion" ColumnName="Fecha_Modificacion" />
+          <ScalarProperty Name="Flag_Eliminado" ColumnName="Flag_Eliminado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_Orga_Usuarios">
+      <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Orga_Usuarios">
+        <MappingFragment StoreEntitySet="tb_Orga_Usuarios">
+          <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+          <ScalarProperty Name="Id_Puesto" ColumnName="Id_Puesto" />
+          <ScalarProperty Name="Id_Tipo_Usuario" ColumnName="Id_Tipo_Usuario" />
+          <ScalarProperty Name="Id_Estado" ColumnName="Id_Estado" />
+          <ScalarProperty Name="Usuario_Creacion" ColumnName="Usuario_Creacion" />
+          <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+          <ScalarProperty Name="Usuario_Modificacion" ColumnName="Usuario_Modificacion" />
+          <ScalarProperty Name="Fecha_Modificacion" ColumnName="Fecha_Modificacion" />
+          <ScalarProperty Name="Flag_Eliminado" ColumnName="Flag_Eliminado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_Plan_Origen">
+      <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Plan_Origen">
+        <MappingFragment StoreEntitySet="tb_Plan_Origen">
+          <ScalarProperty Name="id_origen" ColumnName="id_origen" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="flag_eliminado" ColumnName="flag_eliminado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_Plan_Problema">
+      <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Plan_Problema">
+        <MappingFragment StoreEntitySet="tb_Plan_Problema">
+          <ScalarProperty Name="id_problema" ColumnName="id_problema" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="id_area" ColumnName="id_area" />
+          <ScalarProperty Name="id_origen" ColumnName="id_origen" />
+          <ScalarProperty Name="id_tipo_problema" ColumnName="id_tipo_problema" />
+          <ScalarProperty Name="id_usuario_responsable" ColumnName="id_usuario_responsable" />
+          <ScalarProperty Name="flag_eliminado" ColumnName="flag_eliminado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_Plan_Problema_SistemaGestion">
+      <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Plan_Problema_SistemaGestion">
+        <MappingFragment StoreEntitySet="tb_Plan_Problema_SistemaGestion">
+          <ScalarProperty Name="id_problema_sistemagestion" ColumnName="id_problema_sistemagestion" />
+          <ScalarProperty Name="id_problema" ColumnName="id_problema" />
+          <ScalarProperty Name="id_sistema_gestion" ColumnName="id_sistema_gestion" />
+          <ScalarProperty Name="flag_eliminado" ColumnName="flag_eliminado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_Plan_Tipo_Problema">
+      <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Plan_Tipo_Problema">
+        <MappingFragment StoreEntitySet="tb_Plan_Tipo_Problema">
+          <ScalarProperty Name="id_tipo_problema" ColumnName="id_tipo_problema" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="flag_eliminado" ColumnName="flag_eliminado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_Indi_Indicador">
+      <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Indi_Indicador">
+        <MappingFragment StoreEntitySet="tb_Indi_Indicador">
+          <ScalarProperty Name="id_usuario_alimentador" ColumnName="id_usuario_alimentador" />
+          <ScalarProperty Name="descripcion_valor_unico" ColumnName="descripcion_valor_unico" />
+          <ScalarProperty Name="correlativo_int" ColumnName="correlativo_int" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="id_tipo_indicador" ColumnName="id_tipo_indicador" />
+          <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+          <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+          <ScalarProperty Name="flag_eliminado" ColumnName="flag_eliminado" />
+          <ScalarProperty Name="descripcion_denominador" ColumnName="descripcion_denominador" />
+          <ScalarProperty Name="descripcion_numerador" ColumnName="descripcion_numerador" />
+          <ScalarProperty Name="nominador_denominador" ColumnName="nominador_denominador" />
+          <ScalarProperty Name="meta_nominal" ColumnName="meta_nominal" />
+          <ScalarProperty Name="meta_minima" ColumnName="meta_minima" />
+          <ScalarProperty Name="meta_maxima" ColumnName="meta_maxima" />
+          <ScalarProperty Name="id_area" ColumnName="id_area" />
+          <ScalarProperty Name="publico" ColumnName="publico" />
+          <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+          <ScalarProperty Name="frecuencia" ColumnName="frecuencia" />
+          <ScalarProperty Name="abreviatura" ColumnName="abreviatura" />
+          <ScalarProperty Name="nombre_indicador" ColumnName="nombre_indicador" />
+          <ScalarProperty Name="id_indicador" ColumnName="id_indicador" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_Indi_Indicador_SistemaGestion">
+      <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Indi_Indicador_SistemaGestion">
+        <MappingFragment StoreEntitySet="tb_Indi_Indicador_SistemaGestion">
+          <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+          <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+          <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+          <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+          <ScalarProperty Name="flag_eliminado" ColumnName="flag_eliminado" />
+          <ScalarProperty Name="id_indicador" ColumnName="id_indicador" />
+          <ScalarProperty Name="id_sistema_gestion" ColumnName="id_sistema_gestion" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_Indi_Tipo_Indicador">
+      <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Indi_Tipo_Indicador">
+        <MappingFragment StoreEntitySet="tb_Indi_Tipo_Indicador">
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="flag_eliminado" ColumnName="flag_eliminado" />
+          <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_Orga_Estados">
+      <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Orga_Estados">
+        <MappingFragment StoreEntitySet="tb_Orga_Estados">
+          <ScalarProperty Name="Flag_Eliminado" ColumnName="Flag_Eliminado" />
+          <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+          <ScalarProperty Name="Usuario_Creacion" ColumnName="Usuario_Creacion" />
+          <ScalarProperty Name="Id_Estado" ColumnName="Id_Estado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_Indi_Indicador_Alimentar">
+      <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Indi_Indicador_Alimentar">
+        <MappingFragment StoreEntitySet="tb_Indi_Indicador_Alimentar">
+          <ScalarProperty Name="mes_alimentacion" ColumnName="mes_alimentacion" />
+          <ScalarProperty Name="anio_alimentacion" ColumnName="anio_alimentacion" />
+          <ScalarProperty Name="meta_maxima" ColumnName="meta_maxima" />
+          <ScalarProperty Name="meta_nominal" ColumnName="meta_nominal" />
+          <ScalarProperty Name="meta_minima" ColumnName="meta_minima" />
+          <ScalarProperty Name="flag_eliminado" ColumnName="flag_eliminado" />
+          <ScalarProperty Name="denominador" ColumnName="denominador" />
+          <ScalarProperty Name="numerador" ColumnName="numerador" />
+          <ScalarProperty Name="id_indicador" ColumnName="id_indicador" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,132 @@
+﻿@model MetroWeb.Models.tb_Indi_Indicador_Alimentar
+
+@{
+    Layout = ViewBag.RutaLayout;
+    ViewBag.Title = "Alimentar";
+}
+
+@using (Html.BeginForm("Alimentar", "Indicador", new { ReturnUrl = ViewBag.ReturnUrl , id_indicador = ViewBag.IndicadorId}, FormMethod.Post, new { @id = "formAlimentarIndicaforId" }))
+{
+
+    @Html.AntiForgeryToken()
+
+    <div class="card">
+        <div class="card-header">
+            Alimentar
+        </div>
+        <div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">@ViewBag.NombreIndicador</h5>
+                    <hr />
+                    <p class="card-text">Captura de Valores:</p>
+                    <label  class="col-form-label">*Valores disponibles:</label>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-info">
+                            <input type="radio" name="FechaAlimentacion" value='@ViewBag.FechaAnterior'> @ViewBag.FechaAnterior
+                        </label>
+                        <label class="btn btn-info active">
+                            <input type="radio" name="FechaAlimentacion" value='@ViewBag.FechaActual' checked> @ViewBag.FechaActual
+                        </label>
+                    </div>
+                    <div class="row">
+                        @if (ViewBag.Flag == "0")
+                        {
+                            <div class="col-lg-3 col-6 col-md-6 col-sm-12">
+                                <div class="form-group" style="align-content:flex-start !important; ">
+                                    <label for="nombreIndicadorAgregarId" class="col-form-label">*Valor Asociado:</label>
+                                    @Html.EditorFor(model => model.numerador, new { htmlAttributes = new { @class = "form-control", @type = "number", @id = "valorUnicoIndicadorAlimentarId", @placeholder = "Valor Único", @min = 0 } })
+                                    @Html.ValidationMessageFor(model => model.numerador, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-lg-3 col-6 col-md-6 col-sm-12">
+                                <div class="form-group" style="align-content:flex-start !important; ">
+                                    <label for="numeradorIndicadorAlimentarId" class="col-form-label">*Numerador:</label>
+                                    @Html.EditorFor(model => model.numerador, new { htmlAttributes = new { @class = "form-control", @type = "number", @id = "numeradorIndicadorAlimentarId", @placeholder = "Numerador" , @min = 0} })
+                                    @Html.ValidationMessageFor(model => model.numerador, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-6 col-md-6 col-sm-12">
+                                <div class="form-group" style="align-content:flex-start !important;">
+                                    <label for="denominadorIndicadorAlimentarId" class="col-form-label">*Denominador:</label>
+                                    @Html.EditorFor(model => model.denominador, new { htmlAttributes = new { @class = "form-control", @type = "number", @id = "denominadorIndicadorAlimentarId", @placeholder = "Denominador", @min = 0 } })
+                                    @Html.ValidationMessageFor(model => model.denominador, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+
+                    <button type="submit" class="btn btn-outline-info">Guardar</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div>
+            <canvas id="myChart" style="position: relative; height:40vh; width:80vw"></canvas>
+        </div>
+        @*<div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text"></p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>*@
+        <div class="card-footer text-muted">
+            2 days ago
+        </div>
+    </div>
+}
+
+
+@section scripts
+{
+    <script>
+    $.ajax({
+        url: '@Url.Action("Grafico", "Indicador")',
+        data: {id: '@ViewBag.IndicadorId'},
+        type: "GET",
+        success: function (result) {
+            var ctx = document.getElementById('myChart').getContext('2d');
+            //var lineChart = result.linechart;
+            debugger;
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Enero','Febrero','Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    datasets: result
+
+                },
+                options: {
+                    responsive: true,
+                    barValueSpacing: 20,
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: 'rgb(255, 99, 132)'
+                        },
+                        position: "bottom"
+                    },
+                    scales: {
+                        xAxes: [{
+                            barThickness: 18,  
+                            maxBarThickness: 20
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    title: {
+                                display: true,
+                                text: 'Custom Chart Title'
+                            }
+                }
+            });
+        }
+    });
+    </script>
+}

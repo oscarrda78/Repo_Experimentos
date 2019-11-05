@@ -1,0 +1,265 @@
+﻿@model IEnumerable<MetroWeb.Models.tb_Indi_Indicador>
+
+@{
+    Layout = ViewBag.RutaLayout;
+    ViewBag.Title = "Indicadores";
+
+
+}
+    <div class="container-fluid">
+        <h2>Indicadores</h2>
+        <hr />
+        <div>
+            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#agregarIndicadorId">Agregar</button>
+        </div>
+        <hr />
+
+        <div class="modal fade" id="agregarIndicadorId" role="dialog" aria-labelledby="agregarIndicadorTilutoId" aria-hidden="true" style=" top:50px !important;">
+            @Html.Action("Create", "Indicador")
+        </div>
+        <div id='detallarIndicadorId' class='modal'>
+            <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                    <div id='detallarIndicadorContentId'></div>
+                </div>
+            </div>
+
+        </div>
+        <table id="tableIndicadores" class="table">
+            <tr class="table-dark">
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Código
+                </th>
+                <th>
+                    Tipo
+                </th>
+                <th>
+                    Área
+                </th>
+                <th>
+                    Sistemas de Gestión
+                </th>
+                <th>
+                    Meta Nominal
+                </th>
+                <th>
+                    Estado
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        <a href="javascript:void(0);" class="anchorDetail" data-id="@item.id_indicador">
+                            @item.nombre_indicador
+                        </a>
+                    </td>
+                    <td style="width:100px !important">
+                        @Html.DisplayFor(modelItem => item.abreviatura)
+                    </td>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tb_Indi_Tipo_Indicador.descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tb_Orga_Area.Descripcion_Area)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sistemasGestionJoin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.meta_nominal)%
+                    </td>
+                    <td>
+                        @if (item.tb_Orga_Estados.Descripcion == "Activo")
+                        {
+                            <span class="badge badge-pill badge-info">
+                                @Html.DisplayFor(modelItem => item.tb_Orga_Estados.Descripcion)
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-pill badge-dark">
+                                @Html.DisplayFor(modelItem => item.tb_Orga_Estados.Descripcion)
+                            </span>
+                        }
+                    </td>
+                    <td>
+
+                        <div class="row">
+                            @using (Html.BeginForm("Delete", "Indicador", new { id = item.id_indicador }, FormMethod.Post, new { @class = "formEliminarIndicador", @style = "widht:24px;" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <button type="submit" class="submit-with-icon">
+                                    <span>
+                                        <i class="fa fa-trash glyphicon glyphicon-edit"></i>
+                                    </span>
+                                </button>
+                            }
+                            @*@using (Html.BeginForm("Editar", "Indicador", new { id = item.id_indicador }, FormMethod.Post, new { @class = "formEditarIndicador", @style = "widht:24px;" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <button type="submit" class="submit-with-icon">
+                                    <span>
+                                        <i class="fa fa-edit glyphicon glyphicon-edit"></i>
+                                    </span>
+                                </button>
+                            }*@
+                            @Html.ActionLink(" ", "Alimentar", "Indicador", new { id = item.id_indicador }, new {@class="fa fa-spoon",  target = "_blank" })
+                        </div>
+
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+        
+
+@section scripts{
+    <script type="text/javascript">
+            $("#usuarioAgregarIndicadorId").select2({
+                maximumSelectionLength: 1,
+                width: '100%'
+            });
+             $("#sistemagestionIndicadorAgregarId").select2({ width: '100%' });
+
+            $(function () {  
+                $(".anchorDetail").click(function () {  
+                    var $buttonClicked = $(this);  
+                    var id = $buttonClicked.attr('data-id');  
+                    var options = { "backdrop": "static", keyboard: true };  
+                    $.ajax({  
+                        type: "GET",  
+                        url: '@Url.Action("Details","Indicador")',  
+                        contentType: "application/json; charset=utf-8",  
+                        data: { "id": id },  
+                        datatype: "json",  
+                        success: function (data) {  
+                            $('#detallarIndicadorContentId').html(data);  
+                            $('#detallarIndicadorId').modal(options);  
+                            $('#detallarIndicadorId').modal('show');                    
+  
+                        },  
+                        error: function () {  
+                            alert("Dynamic content load failed.");  
+                        }  
+                    });  
+                });   
+  
+                $("#closbtn").click(function () {  
+                    $('#detallarIndicadorId').modal('hide');  
+                });        
+            });  
+
+
+
+        $(".formEliminarIndicador").submit(function (e) {
+            var formId = this.id,
+                form = this;
+
+            e.preventDefault();
+
+            
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "No se podra recuperar este registro!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                    setTimeout( function () { 
+                        form.submit();
+                    }, 1000 );
+                    
+                }
+                else {
+                   
+                }
+                })
+
+
+        });
+
+       $('li').removeClass("active");
+        $("#indicadoresSubMenuAId").addClass("active");
+        function validateAgregarIndicadorForm()
+        {
+            
+            var valid = true;
+            if ($("#nombreIndicadorAgregarId").val() == "" || $("#descripcionIndicadorAgregarId").val() == "" || $("#areaIndicadorAgregarId").val() == "" || $("#tipoIndicadorAgregarId").val()  == "" ||$("#frecuenciaIndicadorId").val()  == "" ||$("#metaMaximaIndicadorAgregarId").val()  == "" ||$("#metaMaximaIndicadorAgregarId").val()  == "" ||$("#metaMaximaIndicadorAgregarId").val()  == ""  ||$("#usuarioAgregarIndicadorId").val()  == "") {
+                valid = false;
+                
+            }
+            if ($('#numDemoCbxIndicadorId').is(":checked") == true) {
+                if ($("#denominadorTituloIndicadorId").val() == "" || $("#numeradorTituloIndicadorId").val() == "") {
+                    valid = false;
+                    
+                }
+            }
+            if ($('#valorUnicoCbxIndicadorId').is(":checked") == true) {
+                if ($("#valorUnicoTituloIndicadorId").val() == "") {
+                    valid = false;
+                }
+            }
+            if (valid == false) {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'Llenar todos los campos obligatorios(*)'
+                    
+                });
+            }
+            return valid;
+        }
+        $('#formAgregarIndicaforId').submit(validateAgregarIndicadorForm);
+        
+        $(document).ready(function () {
+
+            $("#numeradorIndicadorTituloDivId").hide();
+            $("#denominadorIndicadorTituloDivId").hide();
+            $("#valorUnicoIndicadorTituloDivId").show();
+    
+            $("#numDemoCbxIndicadorId").change(function () {
+                if (this.checked) {
+                    $("#numeradorIndicadorTituloDivId").show();
+                    $("#denominadorIndicadorTituloDivId").show();
+                    $("#valorUnicoIndicadorTituloDivId").hide();
+                }
+            });
+            $("#valorUnicoCbxIndicadorId").change(function () {
+                if (this.checked) {
+                    $("#numeradorIndicadorTituloDivId").hide();
+                    $("#denominadorIndicadorTituloDivId").hide();
+                    $("#valorUnicoIndicadorTituloDivId").show();
+                }
+            });
+        });
+
+
+
+
+    </script>
+
+}

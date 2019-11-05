@@ -1,0 +1,81 @@
+﻿@model MetroWeb.Models.tb_Plan_Problema
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+
+        @using (Html.BeginForm("Create", "Problema"))
+        {
+            @Html.AntiForgeryToken()
+            <div class="modal-header">
+                <h5 class="modal-title" id="problemaAgregarLabelId">Agregar Problema</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label for="descripcionAgregarId" class="col-form-label">Descripción:</label>
+                    @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control", @id = "descripcionAgregarId" } })
+                    @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="areaAgregarId" class="col-form-label">Area:</label>
+                    @Html.DropDownList("id_area", null, "Seleccionar", htmlAttributes: new { @class = "form-control", @id = "areaAgregarId" })
+                    @Html.ValidationMessageFor(model => model.id_area, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="origenAgregarId" class="col-form-label">Origen:</label>
+                    @Html.DropDownList("id_origen", null, "Seleccionar", htmlAttributes: new { @class = "form-control", @id = "origenAgregarId" })
+                    @Html.ValidationMessageFor(model => model.id_origen, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="tipoproblemaAgregarId" class="col-form-label">Tipo de Problema:</label>
+                    @Html.DropDownList("id_tipo_problema", null, "Seleccionar", htmlAttributes: new { @class = "form-control", @id = "tipoproblemaAgregarId" })
+                    @Html.ValidationMessageFor(model => model.id_tipo_problema, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="usuarioresponsableAgregarId" class="col-form-label">Lider:</label>
+                    @Html.DropDownList("id_usuario_responsable", null, "Seleccionar", htmlAttributes: new { @class = "form-control", @id = "usuarioresponsableAgregarId", @multiple = "multiple" })
+                    @Html.ValidationMessageFor(model => model.id_usuario_responsable, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+       $(document).ready(function() {
+           $("#usuarioresponsableAgregarId").select2({
+            dropdownParent: $("#agregarProblemaId")
+          });
+           
+               $('#mySelect2').select2({
+                dropdownParent: $("#agregarProblemaId")
+            });
+           
+       });
+        
+    </script>
+}
+
+

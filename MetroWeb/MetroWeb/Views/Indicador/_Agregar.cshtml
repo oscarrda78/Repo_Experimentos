@@ -1,0 +1,152 @@
+﻿@model MetroWeb.Models.tb_Indi_Indicador
+
+<div class="modal-dialog modal-dialog-scrollable modal-lg"  role="document">
+    <div class="modal-content">
+
+        @using (Html.BeginForm("Create", "Indicador", new { ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post, new {  @id = "formAgregarIndicaforId" }))
+        {
+
+            @Html.AntiForgeryToken()
+            <div class="modal-header">
+                <h5 class="modal-title" id="agregarIndicadorTilutoId">Agregar Indicador</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body" style="height:700px !important;">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                        <div class="card border-dark" style=" display: inline-block !important;">
+                            <div class="card-header">Información General</div>
+                            <div class="card-body">
+
+                                <div class="form-group">
+                                    <label for="nombreIndicadorAgregarId" class="col-form-label">*Nombre:</label>
+                                    @Html.EditorFor(model => model.nombre_indicador, new { htmlAttributes = new { @class = "form-control", @id = "nombreIndicadorAgregarId", @placeholder = "Nombre de Indicador" } })
+                                    @Html.ValidationMessageFor(model => model.nombre_indicador, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="descripcionIndicadorAgregarId" class="col-form-label">*Descripción:</label>
+                                    @Html.TextAreaFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control textarea-modal", @rows = "3", @id = "descripcionIndicadorAgregarId" } })
+                                    @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="areaIndicadorAgregarId" class="col-form-label">*Área:</label>
+
+                                    @Html.DropDownList("id_area", null, "Seleccionar", htmlAttributes: new { @class = "form-control", @id = "areaIndicadorAgregarId" })
+                                    @Html.ValidationMessageFor(model => model.id_area, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="tipoIndicadorAgregarId" class="col-form-label">*Tipo:</label>
+                                    @Html.DropDownList("id_tipo_indicador", null, "Seleccionar", htmlAttributes: new { @class = "form-control", @id = "tipoIndicadorAgregarId" })
+                                    @Html.ValidationMessageFor(model => model.id_tipo_indicador, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="sistemagestionIndicadorAgregarId" class="col-form-label">Sistemas de Gestión:</label>
+                                    @Html.DropDownList("sistemasGestion", (SelectList)ViewBag.sistemas_gestion, htmlAttributes: new { @class = "form-control", @id = "sistemagestionIndicadorAgregarId", @multiple = "multiple" })
+                                    @Html.ValidationMessageFor(model => model.sistemasGestion, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group" style="width: 20px;">
+                                    <label for="esPublicoIndicadorAgregarId" class="col-form-label">Público:</label>
+                                    @Html.CheckBoxFor(model => model.EsPublico, htmlAttributes: new { @class = "form-control", @id = "esPublicoIndicadorAgregarId" })
+                                    @Html.ValidationMessageFor(model => model.EsPublico, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <div class="card border-dark" style=" display: inline-block !important; width:100%;">
+                            <div class="card-header">Medición</div>
+                            <div class="card-body">
+                                <div class="form-check">
+                                    <input class="form-check-input eraseinput" name="nominador_denominador" value="0" style="width:30px;  " type="radio" id="valorUnicoCbxIndicadorId" checked>
+                                    <label class="form-check-label" for="valorUnicoCbxIndicadorId">
+                                        Valor Único
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input eraseinput" name="nominador_denominador" value="1" style="width:30px;" type="radio" id="numDemoCbxIndicadorId">
+                                    <label class="form-check-label" for="numDemoCbxIndicadorId">
+                                        Numerador / Denominador
+                                    </label>
+                                </div>
+                                <div id="valorUnicoIndicadorTituloDivId" class="form-group">
+                                    <label for="valorUnicoTituloIndicadorId" class="col-form-label">*Título de Valor único:</label>
+                                    @Html.EditorFor(model => model.descripcion_valor_unico, new { htmlAttributes = new { @class = "form-control", @id = "valorUnicoTituloIndicadorId", @placeholder = "Título de Valor Único" } })
+                                    @Html.ValidationMessageFor(model => model.descripcion_valor_unico, "", new { @class = "text-danger" })
+                                </div>
+                                <div id="numeradorIndicadorTituloDivId" class="form-group">
+                                    <label for="nombreIndicadorAgregarId" class="col-form-label">*Título de Numerador:</label>
+                                    @Html.EditorFor(model => model.descripcion_numerador, new { htmlAttributes = new { @class = "form-control", @id = "numeradorTituloIndicadorId", @placeholder = "Título de Numerador" } })
+                                    @Html.ValidationMessageFor(model => model.descripcion_numerador, "", new { @class = "text-danger" })
+                                </div>
+                                <div id="denominadorIndicadorTituloDivId" class="form-group">
+                                    <label for="denominadorTituloIndicadorId" class="col-form-label">*Título de Denominador:</label>
+                                    @Html.EditorFor(model => model.descripcion_denominador, new { htmlAttributes = new { @class = "form-control", @id = "denominadorTituloIndicadorId", @placeholder = "Título de Denominador" } })
+                                    @Html.ValidationMessageFor(model => model.descripcion_denominador, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="frecuenciaIndicadorId" class="col-form-label">*Frecuencia:</label>
+                                    
+                                        @Html.DropDownList("frecuencaString", new SelectList(
+                                                new List<SelectListItem>
+                                                {
+                                                    new SelectListItem {  Text ="Mensual", Value = "1"},
+                                                    new SelectListItem { Text = "Bimestral", Value = "2"},
+                                                    new SelectListItem {  Text = "Trimestral", Value = "3"},
+                                                    new SelectListItem { Text = "Cuatrimestral", Value = "4"}
+                                                }, "Value" , "Text", 1), "Seleccionar",htmlAttributes: new { @class = "form-control", @id = "frecuenciaIndicadorId" })
+                                        @Html.ValidationMessageFor(model => model.frecuencaString, "", new { @class = "text-danger" })
+                                        
+                                </div>
+                                <div class="form-group">
+                                    <label for="metaMinimaIndicadorAgregarId" class="col-form-label">*Meta Mínima:</label>
+                                    @Html.EditorFor(model => model.metaMinimaString, new { htmlAttributes = new { @class = "form-control",@min="0",@max="100", @id = "metaMaximaIndicadorAgregarId", @type="number" , @step="0.01"} })
+                                    @Html.ValidationMessageFor(model => model.metaMinimaString, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="metaNominalIndicadorAgregarId" class="col-form-label">*Meta Nominal:</label>
+                                    @Html.EditorFor(model => model.metaNominalString, new { htmlAttributes = new { @class = "form-control",@min="0",@max="100", @id = "metaMaximaIndicadorAgregarId",@type="number", @step="0.01" } })
+                                    @Html.ValidationMessageFor(model => model.metaNominalString, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="metaMaximaIndicadorAgregarId" class="col-form-label">*Meta Máxima:</label>
+                                    @Html.EditorFor(model => model.metaMaximaString, new { htmlAttributes = new { @class = "form-control",@min="0",@max="100", @id = "metaMaximaIndicadorAgregarId",@type="number", @step="0.01" } })
+                                    @Html.ValidationMessageFor(model => model.metaMaximaString, "", new { @class = "text-danger" })
+                                </div>
+                                <div>
+                                    <div class="form-group">
+                                        <label for="usuarioAgregarIndicadorId" class="col-form-label">*Usuario Alimentador:</label>
+                                        @Html.DropDownList("id_usuario_alimentador", null, htmlAttributes: new { @class = "form-control", @style="widht: 100%",@id = "usuarioAgregarIndicadorId", @multiple = "multiple" })
+                                        @Html.ValidationMessageFor(model => model.id_usuario_alimentador, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-info">Agregar</button>
+            </div>
+        }
+
+    </div>
+</div>
+@*<script>
+    
+</script>*@
+    
+

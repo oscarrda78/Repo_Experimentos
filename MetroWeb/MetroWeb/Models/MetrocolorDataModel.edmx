@@ -1,0 +1,1037 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BDGestionIntegradaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_Indi_Indicador">
+          <Key>
+            <PropertyRef Name="id_indicador" />
+          </Key>
+          <Property Name="id_indicador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_indicador" Type="varchar" MaxLength="100" />
+          <Property Name="abreviatura" Type="nchar" MaxLength="30" />
+          <Property Name="frecuencia" Type="bigint" />
+          <Property Name="id_estado" Type="int" />
+          <Property Name="publico" Type="nchar" MaxLength="1" />
+          <Property Name="id_area" Type="int" />
+          <Property Name="meta_maxima" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="meta_minima" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="meta_nominal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="nominador_denominador" Type="nchar" MaxLength="1" />
+          <Property Name="descripcion_numerador" Type="varchar" MaxLength="50" />
+          <Property Name="descripcion_denominador" Type="varchar" MaxLength="50" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="50" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="id_tipo_indicador" Type="bigint" />
+          <Property Name="descripcion" Type="varchar(max)" />
+          <Property Name="correlativo_int" Type="int" />
+          <Property Name="descripcion_valor_unico" Type="varchar" MaxLength="50" />
+          <Property Name="id_usuario_alimentador" Type="int" />
+          <Property Name="flag_eliminado" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tb_Indi_Indicador_Alimentar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_indicador" Type="int" />
+          <Property Name="numerador" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="denominador" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="meta_minima" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="meta_nominal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="meta_maxima" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="anio_alimentacion" Type="int" />
+          <Property Name="mes_alimentacion" Type="int" />
+          <Property Name="flag_eliminado" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tb_Indi_Indicador_SistemaGestion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_sistema_gestion" Type="int" />
+          <Property Name="id_indicador" Type="int" />
+          <Property Name="flag_eliminado" Type="nchar" MaxLength="1" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="50" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_creacion" Type="datetime" />
+          <Property Name="fecha_eliminacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tb_Indi_Tipo_Indicador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="350" />
+          <Property Name="id_estado" Type="int" />
+          <Property Name="flag_eliminado" Type="nchar" MaxLength="1" />
+          <Property Name="codigo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tb_Orga_Area">
+          <Key>
+            <PropertyRef Name="Id_Area" />
+          </Key>
+          <Property Name="Id_Area" Type="int" Nullable="false" />
+          <Property Name="Descripcion_Area" Type="nvarchar" MaxLength="450" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="2" />
+          <Property Name="Abreviatura" Type="nvarchar" MaxLength="10" />
+          <Property Name="Id_Estado" Type="int" />
+          <Property Name="Usuario_Creacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fecha_Creacion" Type="smalldatetime" />
+          <Property Name="Usuario_Modificacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fecha_Modificacion" Type="smalldatetime" />
+          <Property Name="Flag_Eliminado" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tb_Orga_Estados">
+          <Key>
+            <PropertyRef Name="Id_Estado" />
+          </Key>
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Id_Estado" Type="int" Nullable="false" />
+          <Property Name="Usuario_Creacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fecha_Creacion" Type="smalldatetime" />
+          <Property Name="Flag_Eliminado" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tb_Orga_SistemasGestion">
+          <Key>
+            <PropertyRef Name="Id_SistemaGestion" />
+          </Key>
+          <Property Name="Id_SistemaGestion" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="350" />
+          <Property Name="Id_Estado" Type="int" />
+          <Property Name="Usuario_Creacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fecha_Creacion" Type="smalldatetime" />
+          <Property Name="Usuario_Modificacion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fecha_Modificacion" Type="smalldatetime" />
+          <Property Name="Flag_Eliminado" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tb_Orga_Usuarios">
+          <Key>
+            <PropertyRef Name="Id_Usuario" />
+          </Key>
+          <Property Name="Id_Usuario" Type="int" Nullable="false" />
+          <Property Name="Nombres" Type="nvarchar" MaxLength="150" />
+          <Property Name="Apellidos" Type="nvarchar" MaxLength="150" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="150" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="150" />
+          <Property Name="Contrasenia" Type="nvarchar" MaxLength="150" />
+          <Property Name="Id_Puesto" Type="int" />
+          <Property Name="Id_Tipo_Usuario" Type="int" />
+          <Property Name="Id_Estado" Type="int" />
+          <Property Name="Usuario_Creacion" Type="nvarchar" MaxLength="150" />
+          <Property Name="Fecha_Creacion" Type="smalldatetime" />
+          <Property Name="Usuario_Modificacion" Type="nvarchar" MaxLength="150" />
+          <Property Name="Fecha_Modificacion" Type="smalldatetime" />
+          <Property Name="Flag_Eliminado" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tb_Plan_Origen">
+          <Key>
+            <PropertyRef Name="id_origen" />
+          </Key>
+          <Property Name="id_origen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="flag_eliminado" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tb_Plan_Problema">
+          <Key>
+            <PropertyRef Name="id_problema" />
+          </Key>
+          <Property Name="id_problema" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="250" />
+          <Property Name="id_area" Type="int" />
+          <Property Name="id_origen" Type="int" />
+          <Property Name="id_tipo_problema" Type="int" />
+          <Property Name="id_usuario_responsable" Type="int" />
+          <Property Name="flag_eliminado" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tb_Plan_Problema_SistemaGestion">
+          <Key>
+            <PropertyRef Name="id_problema_sistemagestion" />
+          </Key>
+          <Property Name="id_problema_sistemagestion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_problema" Type="int" />
+          <Property Name="id_sistema_gestion" Type="int" />
+          <Property Name="flag_eliminado" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tb_Plan_Tipo_Problema">
+          <Key>
+            <PropertyRef Name="id_tipo_problema" />
+          </Key>
+          <Property Name="id_tipo_problema" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="30" />
+          <Property Name="flag_eliminado" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <Association Name="FK_tb_Indi_Indicador_Alimentar_tb_Indi_Indicador">
+          <End Role="tb_Indi_Indicador" Type="Self.tb_Indi_Indicador" Multiplicity="0..1" />
+          <End Role="tb_Indi_Indicador_Alimentar" Type="Self.tb_Indi_Indicador_Alimentar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Indi_Indicador">
+              <PropertyRef Name="id_indicador" />
+            </Principal>
+            <Dependent Role="tb_Indi_Indicador_Alimentar">
+              <PropertyRef Name="id_indicador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Indi_Indicador_SistemaGestion_tb_Indi_Indicador">
+          <End Role="tb_Indi_Indicador" Type="Self.tb_Indi_Indicador" Multiplicity="0..1" />
+          <End Role="tb_Indi_Indicador_SistemaGestion" Type="Self.tb_Indi_Indicador_SistemaGestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Indi_Indicador">
+              <PropertyRef Name="id_indicador" />
+            </Principal>
+            <Dependent Role="tb_Indi_Indicador_SistemaGestion">
+              <PropertyRef Name="id_indicador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Indi_Indicador_SistemaGestion_tb_Orga_SistemasGestion">
+          <End Role="tb_Orga_SistemasGestion" Type="Self.tb_Orga_SistemasGestion" Multiplicity="0..1" />
+          <End Role="tb_Indi_Indicador_SistemaGestion" Type="Self.tb_Indi_Indicador_SistemaGestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Orga_SistemasGestion">
+              <PropertyRef Name="Id_SistemaGestion" />
+            </Principal>
+            <Dependent Role="tb_Indi_Indicador_SistemaGestion">
+              <PropertyRef Name="id_sistema_gestion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Indi_Indicador_tb_Indi_Tipo_Indicador">
+          <End Role="tb_Indi_Tipo_Indicador" Type="Self.tb_Indi_Tipo_Indicador" Multiplicity="0..1" />
+          <End Role="tb_Indi_Indicador" Type="Self.tb_Indi_Indicador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Indi_Tipo_Indicador">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tb_Indi_Indicador">
+              <PropertyRef Name="id_tipo_indicador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Indi_Indicador_tb_Orga_Area">
+          <End Role="tb_Orga_Area" Type="Self.tb_Orga_Area" Multiplicity="0..1" />
+          <End Role="tb_Indi_Indicador" Type="Self.tb_Indi_Indicador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Orga_Area">
+              <PropertyRef Name="Id_Area" />
+            </Principal>
+            <Dependent Role="tb_Indi_Indicador">
+              <PropertyRef Name="id_area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Indi_Indicador_tb_Orga_Estados">
+          <End Role="tb_Orga_Estados" Type="Self.tb_Orga_Estados" Multiplicity="0..1" />
+          <End Role="tb_Indi_Indicador" Type="Self.tb_Indi_Indicador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Orga_Estados">
+              <PropertyRef Name="Id_Estado" />
+            </Principal>
+            <Dependent Role="tb_Indi_Indicador">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Indi_Indicador_tb_Orga_Usuarios">
+          <End Role="tb_Orga_Usuarios" Type="Self.tb_Orga_Usuarios" Multiplicity="0..1" />
+          <End Role="tb_Indi_Indicador" Type="Self.tb_Indi_Indicador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Orga_Usuarios">
+              <PropertyRef Name="Id_Usuario" />
+            </Principal>
+            <Dependent Role="tb_Indi_Indicador">
+              <PropertyRef Name="id_usuario_alimentador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Indi_Tipo_Indicador_tb_Orga_Estados">
+          <End Role="tb_Orga_Estados" Type="Self.tb_Orga_Estados" Multiplicity="0..1" />
+          <End Role="tb_Indi_Tipo_Indicador" Type="Self.tb_Indi_Tipo_Indicador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Orga_Estados">
+              <PropertyRef Name="Id_Estado" />
+            </Principal>
+            <Dependent Role="tb_Indi_Tipo_Indicador">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Plan_Problema_SistemaGestion_tb_Orga_SistemasGestion">
+          <End Role="tb_Orga_SistemasGestion" Type="Self.tb_Orga_SistemasGestion" Multiplicity="0..1" />
+          <End Role="tb_Plan_Problema_SistemaGestion" Type="Self.tb_Plan_Problema_SistemaGestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Orga_SistemasGestion">
+              <PropertyRef Name="Id_SistemaGestion" />
+            </Principal>
+            <Dependent Role="tb_Plan_Problema_SistemaGestion">
+              <PropertyRef Name="id_sistema_gestion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Plan_Problema_SistemaGestion_tb_Plan_Problema">
+          <End Role="tb_Plan_Problema" Type="Self.tb_Plan_Problema" Multiplicity="0..1" />
+          <End Role="tb_Plan_Problema_SistemaGestion" Type="Self.tb_Plan_Problema_SistemaGestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Plan_Problema">
+              <PropertyRef Name="id_problema" />
+            </Principal>
+            <Dependent Role="tb_Plan_Problema_SistemaGestion">
+              <PropertyRef Name="id_problema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Plan_Problema_tb_Orga_Area">
+          <End Role="tb_Orga_Area" Type="Self.tb_Orga_Area" Multiplicity="0..1" />
+          <End Role="tb_Plan_Problema" Type="Self.tb_Plan_Problema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Orga_Area">
+              <PropertyRef Name="Id_Area" />
+            </Principal>
+            <Dependent Role="tb_Plan_Problema">
+              <PropertyRef Name="id_area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Plan_Problema_tb_Orga_Usuarios">
+          <End Role="tb_Orga_Usuarios" Type="Self.tb_Orga_Usuarios" Multiplicity="0..1" />
+          <End Role="tb_Plan_Problema" Type="Self.tb_Plan_Problema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Orga_Usuarios">
+              <PropertyRef Name="Id_Usuario" />
+            </Principal>
+            <Dependent Role="tb_Plan_Problema">
+              <PropertyRef Name="id_usuario_responsable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Plan_Problema_tb_Plan_Origen">
+          <End Role="tb_Plan_Origen" Type="Self.tb_Plan_Origen" Multiplicity="0..1" />
+          <End Role="tb_Plan_Problema" Type="Self.tb_Plan_Problema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Plan_Origen">
+              <PropertyRef Name="id_origen" />
+            </Principal>
+            <Dependent Role="tb_Plan_Problema">
+              <PropertyRef Name="id_origen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Plan_Problema_tb_Plan_Tipo_Problema">
+          <End Role="tb_Plan_Tipo_Problema" Type="Self.tb_Plan_Tipo_Problema" Multiplicity="0..1" />
+          <End Role="tb_Plan_Problema" Type="Self.tb_Plan_Problema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Plan_Tipo_Problema">
+              <PropertyRef Name="id_tipo_problema" />
+            </Principal>
+            <Dependent Role="tb_Plan_Problema">
+              <PropertyRef Name="id_tipo_problema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDGestionIntegradaModelStoreContainer">
+          <EntitySet Name="tb_Indi_Indicador" EntityType="Self.tb_Indi_Indicador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Indi_Indicador_Alimentar" EntityType="Self.tb_Indi_Indicador_Alimentar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Indi_Indicador_SistemaGestion" EntityType="Self.tb_Indi_Indicador_SistemaGestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Indi_Tipo_Indicador" EntityType="Self.tb_Indi_Tipo_Indicador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Orga_Area" EntityType="Self.tb_Orga_Area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Orga_Estados" EntityType="Self.tb_Orga_Estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Orga_SistemasGestion" EntityType="Self.tb_Orga_SistemasGestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Orga_Usuarios" EntityType="Self.tb_Orga_Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Plan_Origen" EntityType="Self.tb_Plan_Origen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Plan_Problema" EntityType="Self.tb_Plan_Problema" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Plan_Problema_SistemaGestion" EntityType="Self.tb_Plan_Problema_SistemaGestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Plan_Tipo_Problema" EntityType="Self.tb_Plan_Tipo_Problema" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tb_Indi_Indicador_Alimentar_tb_Indi_Indicador" Association="Self.FK_tb_Indi_Indicador_Alimentar_tb_Indi_Indicador">
+            <End Role="tb_Indi_Indicador" EntitySet="tb_Indi_Indicador" />
+            <End Role="tb_Indi_Indicador_Alimentar" EntitySet="tb_Indi_Indicador_Alimentar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Indi_Indicador_SistemaGestion_tb_Indi_Indicador" Association="Self.FK_tb_Indi_Indicador_SistemaGestion_tb_Indi_Indicador">
+            <End Role="tb_Indi_Indicador" EntitySet="tb_Indi_Indicador" />
+            <End Role="tb_Indi_Indicador_SistemaGestion" EntitySet="tb_Indi_Indicador_SistemaGestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Indi_Indicador_SistemaGestion_tb_Orga_SistemasGestion" Association="Self.FK_tb_Indi_Indicador_SistemaGestion_tb_Orga_SistemasGestion">
+            <End Role="tb_Orga_SistemasGestion" EntitySet="tb_Orga_SistemasGestion" />
+            <End Role="tb_Indi_Indicador_SistemaGestion" EntitySet="tb_Indi_Indicador_SistemaGestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Indi_Indicador_tb_Indi_Tipo_Indicador" Association="Self.FK_tb_Indi_Indicador_tb_Indi_Tipo_Indicador">
+            <End Role="tb_Indi_Tipo_Indicador" EntitySet="tb_Indi_Tipo_Indicador" />
+            <End Role="tb_Indi_Indicador" EntitySet="tb_Indi_Indicador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Indi_Indicador_tb_Orga_Area" Association="Self.FK_tb_Indi_Indicador_tb_Orga_Area">
+            <End Role="tb_Orga_Area" EntitySet="tb_Orga_Area" />
+            <End Role="tb_Indi_Indicador" EntitySet="tb_Indi_Indicador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Indi_Indicador_tb_Orga_Estados" Association="Self.FK_tb_Indi_Indicador_tb_Orga_Estados">
+            <End Role="tb_Orga_Estados" EntitySet="tb_Orga_Estados" />
+            <End Role="tb_Indi_Indicador" EntitySet="tb_Indi_Indicador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Indi_Indicador_tb_Orga_Usuarios" Association="Self.FK_tb_Indi_Indicador_tb_Orga_Usuarios">
+            <End Role="tb_Orga_Usuarios" EntitySet="tb_Orga_Usuarios" />
+            <End Role="tb_Indi_Indicador" EntitySet="tb_Indi_Indicador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Indi_Tipo_Indicador_tb_Orga_Estados" Association="Self.FK_tb_Indi_Tipo_Indicador_tb_Orga_Estados">
+            <End Role="tb_Orga_Estados" EntitySet="tb_Orga_Estados" />
+            <End Role="tb_Indi_Tipo_Indicador" EntitySet="tb_Indi_Tipo_Indicador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Plan_Problema_SistemaGestion_tb_Orga_SistemasGestion" Association="Self.FK_tb_Plan_Problema_SistemaGestion_tb_Orga_SistemasGestion">
+            <End Role="tb_Orga_SistemasGestion" EntitySet="tb_Orga_SistemasGestion" />
+            <End Role="tb_Plan_Problema_SistemaGestion" EntitySet="tb_Plan_Problema_SistemaGestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Plan_Problema_SistemaGestion_tb_Plan_Problema" Association="Self.FK_tb_Plan_Problema_SistemaGestion_tb_Plan_Problema">
+            <End Role="tb_Plan_Problema" EntitySet="tb_Plan_Problema" />
+            <End Role="tb_Plan_Problema_SistemaGestion" EntitySet="tb_Plan_Problema_SistemaGestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Plan_Problema_tb_Orga_Area" Association="Self.FK_tb_Plan_Problema_tb_Orga_Area">
+            <End Role="tb_Orga_Area" EntitySet="tb_Orga_Area" />
+            <End Role="tb_Plan_Problema" EntitySet="tb_Plan_Problema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Plan_Problema_tb_Orga_Usuarios" Association="Self.FK_tb_Plan_Problema_tb_Orga_Usuarios">
+            <End Role="tb_Orga_Usuarios" EntitySet="tb_Orga_Usuarios" />
+            <End Role="tb_Plan_Problema" EntitySet="tb_Plan_Problema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Plan_Problema_tb_Plan_Origen" Association="Self.FK_tb_Plan_Problema_tb_Plan_Origen">
+            <End Role="tb_Plan_Origen" EntitySet="tb_Plan_Origen" />
+            <End Role="tb_Plan_Problema" EntitySet="tb_Plan_Problema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Plan_Problema_tb_Plan_Tipo_Problema" Association="Self.FK_tb_Plan_Problema_tb_Plan_Tipo_Problema">
+            <End Role="tb_Plan_Tipo_Problema" EntitySet="tb_Plan_Tipo_Problema" />
+            <End Role="tb_Plan_Problema" EntitySet="tb_Plan_Problema" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDGestionIntegradaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_Orga_Area">
+          <Key>
+            <PropertyRef Name="Id_Area" />
+          </Key>
+          <Property Name="Id_Area" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion_Area" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Codigo" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Abreviatura" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Estado" Type="Int32" />
+          <Property Name="Usuario_Creacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha_Creacion" Type="DateTime" Precision="0" />
+          <Property Name="Usuario_Modificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha_Modificacion" Type="DateTime" Precision="0" />
+          <Property Name="Flag_Eliminado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="tb_Plan_Problema" Relationship="Self.FK_tb_Plan_Problema_tb_Orga_Area" FromRole="tb_Orga_Area" ToRole="tb_Plan_Problema" />
+          <NavigationProperty Name="tb_Indi_Indicador" Relationship="BDGestionIntegradaModel.FK_tb_Indi_Indicador_tb_Orga_Area" FromRole="tb_Orga_Area" ToRole="tb_Indi_Indicador" />
+        </EntityType>
+        <EntityType Name="tb_Orga_SistemasGestion">
+          <Key>
+            <PropertyRef Name="Id_SistemaGestion" />
+          </Key>
+          <Property Name="Id_SistemaGestion" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Estado" Type="Int32" />
+          <Property Name="Usuario_Creacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha_Creacion" Type="DateTime" Precision="0" />
+          <Property Name="Usuario_Modificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha_Modificacion" Type="DateTime" Precision="0" />
+          <Property Name="Flag_Eliminado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="tb_Plan_Problema_SistemaGestion" Relationship="Self.FK_tb_Plan_Problema_SistemaGestion_tb_Orga_SistemasGestion" FromRole="tb_Orga_SistemasGestion" ToRole="tb_Plan_Problema_SistemaGestion" />
+          <NavigationProperty Name="tb_Indi_Indicador_SistemaGestion" Relationship="BDGestionIntegradaModel.FK_tb_Indi_Indicador_SistemaGestion_tb_Orga_SistemasGestion" FromRole="tb_Orga_SistemasGestion" ToRole="tb_Indi_Indicador_SistemaGestion" />
+        </EntityType>
+        <EntityType Name="tb_Orga_Usuarios">
+          <Key>
+            <PropertyRef Name="Id_Usuario" />
+          </Key>
+          <Property Name="Id_Usuario" Type="Int32" Nullable="false" />
+          <Property Name="Nombres" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Apellidos" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Usuario" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Contrasenia" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Puesto" Type="Int32" />
+          <Property Name="Id_Tipo_Usuario" Type="Int32" />
+          <Property Name="Id_Estado" Type="Int32" />
+          <Property Name="Usuario_Creacion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha_Creacion" Type="DateTime" Precision="0" />
+          <Property Name="Usuario_Modificacion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha_Modificacion" Type="DateTime" Precision="0" />
+          <Property Name="Flag_Eliminado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="tb_Plan_Problema" Relationship="Self.FK_tb_Plan_Problema_tb_Orga_Usuarios" FromRole="tb_Orga_Usuarios" ToRole="tb_Plan_Problema" />
+          <NavigationProperty Name="tb_Indi_Indicador" Relationship="BDGestionIntegradaModel.FK_tb_Indi_Indicador_tb_Orga_Usuarios" FromRole="tb_Orga_Usuarios" ToRole="tb_Indi_Indicador" />
+        </EntityType>
+        <EntityType Name="tb_Plan_Origen">
+          <Key>
+            <PropertyRef Name="id_origen" />
+          </Key>
+          <Property Name="id_origen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="flag_eliminado" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tb_Plan_Problema" Relationship="Self.FK_tb_Plan_Problema_tb_Plan_Origen" FromRole="tb_Plan_Origen" ToRole="tb_Plan_Problema" />
+        </EntityType>
+        <EntityType Name="tb_Plan_Problema">
+          <Key>
+            <PropertyRef Name="id_problema" />
+          </Key>
+          <Property Name="id_problema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="id_area" Type="Int32" />
+          <Property Name="id_origen" Type="Int32" />
+          <Property Name="id_tipo_problema" Type="Int32" />
+          <Property Name="id_usuario_responsable" Type="Int32" />
+          <Property Name="flag_eliminado" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tb_Orga_Area" Relationship="Self.FK_tb_Plan_Problema_tb_Orga_Area" FromRole="tb_Plan_Problema" ToRole="tb_Orga_Area" />
+          <NavigationProperty Name="tb_Orga_Usuarios" Relationship="Self.FK_tb_Plan_Problema_tb_Orga_Usuarios" FromRole="tb_Plan_Problema" ToRole="tb_Orga_Usuarios" />
+          <NavigationProperty Name="tb_Plan_Origen" Relationship="Self.FK_tb_Plan_Problema_tb_Plan_Origen" FromRole="tb_Plan_Problema" ToRole="tb_Plan_Origen" />
+          <NavigationProperty Name="tb_Plan_Problema_SistemaGestion" Relationship="Self.FK_tb_Plan_Problema_SistemaGestion_tb_Plan_Problema" FromRole="tb_Plan_Problema" ToRole="tb_Plan_Problema_SistemaGestion" />
+          <NavigationProperty Name="tb_Plan_Tipo_Problema" Relationship="Self.FK_tb_Plan_Problema_tb_Plan_Tipo_Problema" FromRole="tb_Plan_Problema" ToRole="tb_Plan_Tipo_Problema" />
+        </EntityType>
+        <EntityType Name="tb_Plan_Problema_SistemaGestion">
+          <Key>
+            <PropertyRef Name="id_problema_sistemagestion" />
+          </Key>
+          <Property Name="id_problema_sistemagestion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_problema" Type="Int32" />
+          <Property Name="id_sistema_gestion" Type="Int32" />
+          <Property Name="flag_eliminado" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tb_Orga_SistemasGestion" Relationship="Self.FK_tb_Plan_Problema_SistemaGestion_tb_Orga_SistemasGestion" FromRole="tb_Plan_Problema_SistemaGestion" ToRole="tb_Orga_SistemasGestion" />
+          <NavigationProperty Name="tb_Plan_Problema" Relationship="Self.FK_tb_Plan_Problema_SistemaGestion_tb_Plan_Problema" FromRole="tb_Plan_Problema_SistemaGestion" ToRole="tb_Plan_Problema" />
+        </EntityType>
+        <EntityType Name="tb_Plan_Tipo_Problema">
+          <Key>
+            <PropertyRef Name="id_tipo_problema" />
+          </Key>
+          <Property Name="id_tipo_problema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="flag_eliminado" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tb_Plan_Problema" Relationship="Self.FK_tb_Plan_Problema_tb_Plan_Tipo_Problema" FromRole="tb_Plan_Tipo_Problema" ToRole="tb_Plan_Problema" />
+        </EntityType>
+        <Association Name="FK_tb_Plan_Problema_tb_Orga_Area">
+          <End Role="tb_Orga_Area" Type="Self.tb_Orga_Area" Multiplicity="0..1" />
+          <End Role="tb_Plan_Problema" Type="Self.tb_Plan_Problema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Orga_Area">
+              <PropertyRef Name="Id_Area" />
+            </Principal>
+            <Dependent Role="tb_Plan_Problema">
+              <PropertyRef Name="id_area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Plan_Problema_SistemaGestion_tb_Orga_SistemasGestion">
+          <End Role="tb_Orga_SistemasGestion" Type="Self.tb_Orga_SistemasGestion" Multiplicity="0..1" />
+          <End Role="tb_Plan_Problema_SistemaGestion" Type="Self.tb_Plan_Problema_SistemaGestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Orga_SistemasGestion">
+              <PropertyRef Name="Id_SistemaGestion" />
+            </Principal>
+            <Dependent Role="tb_Plan_Problema_SistemaGestion">
+              <PropertyRef Name="id_sistema_gestion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Plan_Problema_tb_Orga_Usuarios">
+          <End Role="tb_Orga_Usuarios" Type="Self.tb_Orga_Usuarios" Multiplicity="0..1" />
+          <End Role="tb_Plan_Problema" Type="Self.tb_Plan_Problema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Orga_Usuarios">
+              <PropertyRef Name="Id_Usuario" />
+            </Principal>
+            <Dependent Role="tb_Plan_Problema">
+              <PropertyRef Name="id_usuario_responsable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Plan_Problema_tb_Plan_Origen">
+          <End Role="tb_Plan_Origen" Type="Self.tb_Plan_Origen" Multiplicity="0..1" />
+          <End Role="tb_Plan_Problema" Type="Self.tb_Plan_Problema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Plan_Origen">
+              <PropertyRef Name="id_origen" />
+            </Principal>
+            <Dependent Role="tb_Plan_Problema">
+              <PropertyRef Name="id_origen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Plan_Problema_SistemaGestion_tb_Plan_Problema">
+          <End Role="tb_Plan_Problema" Type="Self.tb_Plan_Problema" Multiplicity="0..1" />
+          <End Role="tb_Plan_Problema_SistemaGestion" Type="Self.tb_Plan_Problema_SistemaGestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Plan_Problema">
+              <PropertyRef Name="id_problema" />
+            </Principal>
+            <Dependent Role="tb_Plan_Problema_SistemaGestion">
+              <PropertyRef Name="id_problema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Plan_Problema_tb_Plan_Tipo_Problema">
+          <End Role="tb_Plan_Tipo_Problema" Type="Self.tb_Plan_Tipo_Problema" Multiplicity="0..1" />
+          <End Role="tb_Plan_Problema" Type="Self.tb_Plan_Problema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Plan_Tipo_Problema">
+              <PropertyRef Name="id_tipo_problema" />
+            </Principal>
+            <Dependent Role="tb_Plan_Problema">
+              <PropertyRef Name="id_tipo_problema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDGestionIntegradaEntitiesContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_Orga_Area" EntityType="Self.tb_Orga_Area" />
+          <EntitySet Name="tb_Orga_SistemasGestion" EntityType="Self.tb_Orga_SistemasGestion" />
+          <EntitySet Name="tb_Orga_Usuarios" EntityType="Self.tb_Orga_Usuarios" />
+          <EntitySet Name="tb_Plan_Origen" EntityType="Self.tb_Plan_Origen" />
+          <EntitySet Name="tb_Plan_Problema" EntityType="Self.tb_Plan_Problema" />
+          <EntitySet Name="tb_Plan_Problema_SistemaGestion" EntityType="Self.tb_Plan_Problema_SistemaGestion" />
+          <EntitySet Name="tb_Plan_Tipo_Problema" EntityType="Self.tb_Plan_Tipo_Problema" />
+          <AssociationSet Name="FK_tb_Plan_Problema_tb_Orga_Area" Association="Self.FK_tb_Plan_Problema_tb_Orga_Area">
+            <End Role="tb_Orga_Area" EntitySet="tb_Orga_Area" />
+            <End Role="tb_Plan_Problema" EntitySet="tb_Plan_Problema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Plan_Problema_SistemaGestion_tb_Orga_SistemasGestion" Association="Self.FK_tb_Plan_Problema_SistemaGestion_tb_Orga_SistemasGestion">
+            <End Role="tb_Orga_SistemasGestion" EntitySet="tb_Orga_SistemasGestion" />
+            <End Role="tb_Plan_Problema_SistemaGestion" EntitySet="tb_Plan_Problema_SistemaGestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Plan_Problema_tb_Orga_Usuarios" Association="Self.FK_tb_Plan_Problema_tb_Orga_Usuarios">
+            <End Role="tb_Orga_Usuarios" EntitySet="tb_Orga_Usuarios" />
+            <End Role="tb_Plan_Problema" EntitySet="tb_Plan_Problema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Plan_Problema_tb_Plan_Origen" Association="Self.FK_tb_Plan_Problema_tb_Plan_Origen">
+            <End Role="tb_Plan_Origen" EntitySet="tb_Plan_Origen" />
+            <End Role="tb_Plan_Problema" EntitySet="tb_Plan_Problema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Plan_Problema_SistemaGestion_tb_Plan_Problema" Association="Self.FK_tb_Plan_Problema_SistemaGestion_tb_Plan_Problema">
+            <End Role="tb_Plan_Problema" EntitySet="tb_Plan_Problema" />
+            <End Role="tb_Plan_Problema_SistemaGestion" EntitySet="tb_Plan_Problema_SistemaGestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Plan_Problema_tb_Plan_Tipo_Problema" Association="Self.FK_tb_Plan_Problema_tb_Plan_Tipo_Problema">
+            <End Role="tb_Plan_Tipo_Problema" EntitySet="tb_Plan_Tipo_Problema" />
+            <End Role="tb_Plan_Problema" EntitySet="tb_Plan_Problema" />
+          </AssociationSet>
+          <EntitySet Name="tb_Indi_Indicador" EntityType="BDGestionIntegradaModel.tb_Indi_Indicador" />
+          <EntitySet Name="tb_Indi_Indicador_SistemaGestion" EntityType="BDGestionIntegradaModel.tb_Indi_Indicador_SistemaGestion" />
+          <EntitySet Name="tb_Indi_Tipo_Indicador" EntityType="BDGestionIntegradaModel.tb_Indi_Tipo_Indicador" />
+          <AssociationSet Name="FK_tb_Indi_Indicador_SistemaGestion_tb_Indi_Indicador" Association="BDGestionIntegradaModel.FK_tb_Indi_Indicador_SistemaGestion_tb_Indi_Indicador">
+            <End Role="tb_Indi_Indicador" EntitySet="tb_Indi_Indicador" />
+            <End Role="tb_Indi_Indicador_SistemaGestion" EntitySet="tb_Indi_Indicador_SistemaGestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Indi_Indicador_tb_Indi_Tipo_Indicador" Association="BDGestionIntegradaModel.FK_tb_Indi_Indicador_tb_Indi_Tipo_Indicador">
+            <End Role="tb_Indi_Tipo_Indicador" EntitySet="tb_Indi_Tipo_Indicador" />
+            <End Role="tb_Indi_Indicador" EntitySet="tb_Indi_Indicador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Indi_Indicador_tb_Orga_Area" Association="BDGestionIntegradaModel.FK_tb_Indi_Indicador_tb_Orga_Area">
+            <End Role="tb_Orga_Area" EntitySet="tb_Orga_Area" />
+            <End Role="tb_Indi_Indicador" EntitySet="tb_Indi_Indicador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Indi_Indicador_SistemaGestion_tb_Orga_SistemasGestion" Association="BDGestionIntegradaModel.FK_tb_Indi_Indicador_SistemaGestion_tb_Orga_SistemasGestion">
+            <End Role="tb_Orga_SistemasGestion" EntitySet="tb_Orga_SistemasGestion" />
+            <End Role="tb_Indi_Indicador_SistemaGestion" EntitySet="tb_Indi_Indicador_SistemaGestion" />
+          </AssociationSet>
+          <EntitySet Name="tb_Orga_Estados" EntityType="BDGestionIntegradaModel.tb_Orga_Estados" />
+          <AssociationSet Name="FK_tb_Indi_Indicador_tb_Orga_Estados" Association="BDGestionIntegradaModel.FK_tb_Indi_Indicador_tb_Orga_Estados">
+            <End Role="tb_Orga_Estados" EntitySet="tb_Orga_Estados" />
+            <End Role="tb_Indi_Indicador" EntitySet="tb_Indi_Indicador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Indi_Tipo_Indicador_tb_Orga_Estados" Association="BDGestionIntegradaModel.FK_tb_Indi_Tipo_Indicador_tb_Orga_Estados">
+            <End Role="tb_Orga_Estados" EntitySet="tb_Orga_Estados" />
+            <End Role="tb_Indi_Tipo_Indicador" EntitySet="tb_Indi_Tipo_Indicador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_Indi_Indicador_tb_Orga_Usuarios" Association="BDGestionIntegradaModel.FK_tb_Indi_Indicador_tb_Orga_Usuarios">
+            <End Role="tb_Orga_Usuarios" EntitySet="tb_Orga_Usuarios" />
+            <End Role="tb_Indi_Indicador" EntitySet="tb_Indi_Indicador" />
+          </AssociationSet>
+          <EntitySet Name="tb_Indi_Indicador_Alimentar" EntityType="BDGestionIntegradaModel.tb_Indi_Indicador_Alimentar" />
+          <AssociationSet Name="FK_tb_Indi_Indicador_Alimentar_tb_Indi_Indicador" Association="BDGestionIntegradaModel.FK_tb_Indi_Indicador_Alimentar_tb_Indi_Indicador">
+            <End Role="tb_Indi_Indicador" EntitySet="tb_Indi_Indicador" />
+            <End Role="tb_Indi_Indicador_Alimentar" EntitySet="tb_Indi_Indicador_Alimentar" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tb_Indi_Indicador">
+          <Key>
+            <PropertyRef Name="id_indicador" />
+          </Key>
+          <Property Name="id_indicador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_indicador" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="abreviatura" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="frecuencia" Type="Int64" />
+          <Property Name="id_estado" Type="Int32" />
+          <Property Name="publico" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="id_area" Type="Int32" />
+          <Property Name="meta_maxima" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="meta_minima" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="meta_nominal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="nominador_denominador" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="descripcion_numerador" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion_denominador" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="flag_eliminado" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="id_tipo_indicador" Type="Int64" />
+          <NavigationProperty Name="tb_Indi_Indicador_SistemaGestion" Relationship="BDGestionIntegradaModel.FK_tb_Indi_Indicador_SistemaGestion_tb_Indi_Indicador" FromRole="tb_Indi_Indicador" ToRole="tb_Indi_Indicador_SistemaGestion" />
+          <NavigationProperty Name="tb_Indi_Tipo_Indicador" Relationship="BDGestionIntegradaModel.FK_tb_Indi_Indicador_tb_Indi_Tipo_Indicador" FromRole="tb_Indi_Indicador" ToRole="tb_Indi_Tipo_Indicador" />
+          <NavigationProperty Name="tb_Orga_Area" Relationship="BDGestionIntegradaModel.FK_tb_Indi_Indicador_tb_Orga_Area" FromRole="tb_Indi_Indicador" ToRole="tb_Orga_Area" />
+          <NavigationProperty Name="tb_Orga_Estados" Relationship="BDGestionIntegradaModel.FK_tb_Indi_Indicador_tb_Orga_Estados" FromRole="tb_Indi_Indicador" ToRole="tb_Orga_Estados" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="correlativo_int" Type="Int32" />
+          <Property Name="descripcion_valor_unico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_usuario_alimentador" Type="Int32" />
+          <NavigationProperty Name="tb_Orga_Usuarios" Relationship="BDGestionIntegradaModel.FK_tb_Indi_Indicador_tb_Orga_Usuarios" FromRole="tb_Indi_Indicador" ToRole="tb_Orga_Usuarios" />
+          <NavigationProperty Name="tb_Indi_Indicador_Alimentar" Relationship="BDGestionIntegradaModel.FK_tb_Indi_Indicador_Alimentar_tb_Indi_Indicador" FromRole="tb_Indi_Indicador" ToRole="tb_Indi_Indicador_Alimentar" />
+        </EntityType>
+        <EntityType Name="tb_Indi_Indicador_SistemaGestion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_sistema_gestion" Type="Int32" />
+          <Property Name="id_indicador" Type="Int32" />
+          <Property Name="flag_eliminado" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="fecha_eliminacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tb_Indi_Indicador" Relationship="BDGestionIntegradaModel.FK_tb_Indi_Indicador_SistemaGestion_tb_Indi_Indicador" FromRole="tb_Indi_Indicador_SistemaGestion" ToRole="tb_Indi_Indicador" />
+          <NavigationProperty Name="tb_Orga_SistemasGestion" Relationship="BDGestionIntegradaModel.FK_tb_Indi_Indicador_SistemaGestion_tb_Orga_SistemasGestion" FromRole="tb_Indi_Indicador_SistemaGestion" ToRole="tb_Orga_SistemasGestion" />
+        </EntityType>
+        <EntityType Name="tb_Indi_Tipo_Indicador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="id_estado" Type="Int32" />
+          <Property Name="flag_eliminado" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tb_Indi_Indicador" Relationship="BDGestionIntegradaModel.FK_tb_Indi_Indicador_tb_Indi_Tipo_Indicador" FromRole="tb_Indi_Tipo_Indicador" ToRole="tb_Indi_Indicador" />
+          <NavigationProperty Name="tb_Orga_Estados" Relationship="BDGestionIntegradaModel.FK_tb_Indi_Tipo_Indicador_tb_Orga_Estados" FromRole="tb_Indi_Tipo_Indicador" ToRole="tb_Orga_Estados" />
+          <Property Name="codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_tb_Indi_Indicador_SistemaGestion_tb_Indi_Indicador">
+          <End Type="BDGestionIntegradaModel.tb_Indi_Indicador" Role="tb_Indi_Indicador" Multiplicity="0..1" />
+          <End Type="BDGestionIntegradaModel.tb_Indi_Indicador_SistemaGestion" Role="tb_Indi_Indicador_SistemaGestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Indi_Indicador">
+              <PropertyRef Name="id_indicador" />
+            </Principal>
+            <Dependent Role="tb_Indi_Indicador_SistemaGestion">
+              <PropertyRef Name="id_indicador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Indi_Indicador_tb_Indi_Tipo_Indicador">
+          <End Type="BDGestionIntegradaModel.tb_Indi_Tipo_Indicador" Role="tb_Indi_Tipo_Indicador" Multiplicity="0..1" />
+          <End Type="BDGestionIntegradaModel.tb_Indi_Indicador" Role="tb_Indi_Indicador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Indi_Tipo_Indicador">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tb_Indi_Indicador">
+              <PropertyRef Name="id_tipo_indicador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Indi_Indicador_tb_Orga_Area">
+          <End Type="BDGestionIntegradaModel.tb_Orga_Area" Role="tb_Orga_Area" Multiplicity="0..1" />
+          <End Type="BDGestionIntegradaModel.tb_Indi_Indicador" Role="tb_Indi_Indicador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Orga_Area">
+              <PropertyRef Name="Id_Area" />
+            </Principal>
+            <Dependent Role="tb_Indi_Indicador">
+              <PropertyRef Name="id_area" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Indi_Indicador_SistemaGestion_tb_Orga_SistemasGestion">
+          <End Type="BDGestionIntegradaModel.tb_Orga_SistemasGestion" Role="tb_Orga_SistemasGestion" Multiplicity="0..1" />
+          <End Type="BDGestionIntegradaModel.tb_Indi_Indicador_SistemaGestion" Role="tb_Indi_Indicador_SistemaGestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Orga_SistemasGestion">
+              <PropertyRef Name="Id_SistemaGestion" />
+            </Principal>
+            <Dependent Role="tb_Indi_Indicador_SistemaGestion">
+              <PropertyRef Name="id_sistema_gestion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tb_Orga_Estados">
+          <Key>
+            <PropertyRef Name="Id_Estado" />
+          </Key>
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Estado" Type="Int32" Nullable="false" />
+          <Property Name="Usuario_Creacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha_Creacion" Type="DateTime" Precision="0" />
+          <Property Name="Flag_Eliminado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="tb_Indi_Indicador" Relationship="BDGestionIntegradaModel.FK_tb_Indi_Indicador_tb_Orga_Estados" FromRole="tb_Orga_Estados" ToRole="tb_Indi_Indicador" />
+          <NavigationProperty Name="tb_Indi_Tipo_Indicador" Relationship="BDGestionIntegradaModel.FK_tb_Indi_Tipo_Indicador_tb_Orga_Estados" FromRole="tb_Orga_Estados" ToRole="tb_Indi_Tipo_Indicador" />
+        </EntityType>
+        <Association Name="FK_tb_Indi_Indicador_tb_Orga_Estados">
+          <End Type="BDGestionIntegradaModel.tb_Orga_Estados" Role="tb_Orga_Estados" Multiplicity="0..1" />
+          <End Type="BDGestionIntegradaModel.tb_Indi_Indicador" Role="tb_Indi_Indicador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Orga_Estados">
+              <PropertyRef Name="Id_Estado" />
+            </Principal>
+            <Dependent Role="tb_Indi_Indicador">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Indi_Tipo_Indicador_tb_Orga_Estados">
+          <End Type="BDGestionIntegradaModel.tb_Orga_Estados" Role="tb_Orga_Estados" Multiplicity="0..1" />
+          <End Type="BDGestionIntegradaModel.tb_Indi_Tipo_Indicador" Role="tb_Indi_Tipo_Indicador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Orga_Estados">
+              <PropertyRef Name="Id_Estado" />
+            </Principal>
+            <Dependent Role="tb_Indi_Tipo_Indicador">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_Indi_Indicador_tb_Orga_Usuarios">
+          <End Type="BDGestionIntegradaModel.tb_Orga_Usuarios" Role="tb_Orga_Usuarios" Multiplicity="0..1" />
+          <End Type="BDGestionIntegradaModel.tb_Indi_Indicador" Role="tb_Indi_Indicador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Orga_Usuarios">
+              <PropertyRef Name="Id_Usuario" />
+            </Principal>
+            <Dependent Role="tb_Indi_Indicador">
+              <PropertyRef Name="id_usuario_alimentador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tb_Indi_Indicador_Alimentar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_indicador" Type="Int32" />
+          <Property Name="numerador" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="denominador" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="flag_eliminado" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tb_Indi_Indicador" Relationship="BDGestionIntegradaModel.FK_tb_Indi_Indicador_Alimentar_tb_Indi_Indicador" FromRole="tb_Indi_Indicador_Alimentar" ToRole="tb_Indi_Indicador" />
+          <Property Name="meta_minima" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="meta_nominal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="meta_maxima" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="anio_alimentacion" Type="Int32" />
+          <Property Name="mes_alimentacion" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_tb_Indi_Indicador_Alimentar_tb_Indi_Indicador">
+          <End Type="BDGestionIntegradaModel.tb_Indi_Indicador" Role="tb_Indi_Indicador" Multiplicity="0..1" />
+          <End Type="BDGestionIntegradaModel.tb_Indi_Indicador_Alimentar" Role="tb_Indi_Indicador_Alimentar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_Indi_Indicador">
+              <PropertyRef Name="id_indicador" />
+            </Principal>
+            <Dependent Role="tb_Indi_Indicador_Alimentar">
+              <PropertyRef Name="id_indicador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDGestionIntegradaModelStoreContainer" CdmEntityContainer="BDGestionIntegradaEntitiesContext">
+          <EntitySetMapping Name="tb_Orga_Area">
+            <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Orga_Area">
+              <MappingFragment StoreEntitySet="tb_Orga_Area">
+                <ScalarProperty Name="Id_Area" ColumnName="Id_Area" />
+                <ScalarProperty Name="Descripcion_Area" ColumnName="Descripcion_Area" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Abreviatura" ColumnName="Abreviatura" />
+                <ScalarProperty Name="Id_Estado" ColumnName="Id_Estado" />
+                <ScalarProperty Name="Usuario_Creacion" ColumnName="Usuario_Creacion" />
+                <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+                <ScalarProperty Name="Usuario_Modificacion" ColumnName="Usuario_Modificacion" />
+                <ScalarProperty Name="Fecha_Modificacion" ColumnName="Fecha_Modificacion" />
+                <ScalarProperty Name="Flag_Eliminado" ColumnName="Flag_Eliminado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Orga_SistemasGestion">
+            <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Orga_SistemasGestion">
+              <MappingFragment StoreEntitySet="tb_Orga_SistemasGestion">
+                <ScalarProperty Name="Id_SistemaGestion" ColumnName="Id_SistemaGestion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id_Estado" ColumnName="Id_Estado" />
+                <ScalarProperty Name="Usuario_Creacion" ColumnName="Usuario_Creacion" />
+                <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+                <ScalarProperty Name="Usuario_Modificacion" ColumnName="Usuario_Modificacion" />
+                <ScalarProperty Name="Fecha_Modificacion" ColumnName="Fecha_Modificacion" />
+                <ScalarProperty Name="Flag_Eliminado" ColumnName="Flag_Eliminado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Orga_Usuarios">
+            <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Orga_Usuarios">
+              <MappingFragment StoreEntitySet="tb_Orga_Usuarios">
+                <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+                <ScalarProperty Name="Id_Puesto" ColumnName="Id_Puesto" />
+                <ScalarProperty Name="Id_Tipo_Usuario" ColumnName="Id_Tipo_Usuario" />
+                <ScalarProperty Name="Id_Estado" ColumnName="Id_Estado" />
+                <ScalarProperty Name="Usuario_Creacion" ColumnName="Usuario_Creacion" />
+                <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+                <ScalarProperty Name="Usuario_Modificacion" ColumnName="Usuario_Modificacion" />
+                <ScalarProperty Name="Fecha_Modificacion" ColumnName="Fecha_Modificacion" />
+                <ScalarProperty Name="Flag_Eliminado" ColumnName="Flag_Eliminado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Plan_Origen">
+            <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Plan_Origen">
+              <MappingFragment StoreEntitySet="tb_Plan_Origen">
+                <ScalarProperty Name="id_origen" ColumnName="id_origen" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="flag_eliminado" ColumnName="flag_eliminado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Plan_Problema">
+            <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Plan_Problema">
+              <MappingFragment StoreEntitySet="tb_Plan_Problema">
+                <ScalarProperty Name="id_problema" ColumnName="id_problema" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_area" ColumnName="id_area" />
+                <ScalarProperty Name="id_origen" ColumnName="id_origen" />
+                <ScalarProperty Name="id_tipo_problema" ColumnName="id_tipo_problema" />
+                <ScalarProperty Name="id_usuario_responsable" ColumnName="id_usuario_responsable" />
+                <ScalarProperty Name="flag_eliminado" ColumnName="flag_eliminado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Plan_Problema_SistemaGestion">
+            <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Plan_Problema_SistemaGestion">
+              <MappingFragment StoreEntitySet="tb_Plan_Problema_SistemaGestion">
+                <ScalarProperty Name="id_problema_sistemagestion" ColumnName="id_problema_sistemagestion" />
+                <ScalarProperty Name="id_problema" ColumnName="id_problema" />
+                <ScalarProperty Name="id_sistema_gestion" ColumnName="id_sistema_gestion" />
+                <ScalarProperty Name="flag_eliminado" ColumnName="flag_eliminado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Plan_Tipo_Problema">
+            <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Plan_Tipo_Problema">
+              <MappingFragment StoreEntitySet="tb_Plan_Tipo_Problema">
+                <ScalarProperty Name="id_tipo_problema" ColumnName="id_tipo_problema" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="flag_eliminado" ColumnName="flag_eliminado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Indi_Indicador">
+            <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Indi_Indicador">
+              <MappingFragment StoreEntitySet="tb_Indi_Indicador">
+                <ScalarProperty Name="id_usuario_alimentador" ColumnName="id_usuario_alimentador" />
+                <ScalarProperty Name="descripcion_valor_unico" ColumnName="descripcion_valor_unico" />
+                <ScalarProperty Name="correlativo_int" ColumnName="correlativo_int" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_tipo_indicador" ColumnName="id_tipo_indicador" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="flag_eliminado" ColumnName="flag_eliminado" />
+                <ScalarProperty Name="descripcion_denominador" ColumnName="descripcion_denominador" />
+                <ScalarProperty Name="descripcion_numerador" ColumnName="descripcion_numerador" />
+                <ScalarProperty Name="nominador_denominador" ColumnName="nominador_denominador" />
+                <ScalarProperty Name="meta_nominal" ColumnName="meta_nominal" />
+                <ScalarProperty Name="meta_minima" ColumnName="meta_minima" />
+                <ScalarProperty Name="meta_maxima" ColumnName="meta_maxima" />
+                <ScalarProperty Name="id_area" ColumnName="id_area" />
+                <ScalarProperty Name="publico" ColumnName="publico" />
+                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+                <ScalarProperty Name="frecuencia" ColumnName="frecuencia" />
+                <ScalarProperty Name="abreviatura" ColumnName="abreviatura" />
+                <ScalarProperty Name="nombre_indicador" ColumnName="nombre_indicador" />
+                <ScalarProperty Name="id_indicador" ColumnName="id_indicador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Indi_Indicador_SistemaGestion">
+            <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Indi_Indicador_SistemaGestion">
+              <MappingFragment StoreEntitySet="tb_Indi_Indicador_SistemaGestion">
+                <ScalarProperty Name="fecha_eliminacion" ColumnName="fecha_eliminacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="flag_eliminado" ColumnName="flag_eliminado" />
+                <ScalarProperty Name="id_indicador" ColumnName="id_indicador" />
+                <ScalarProperty Name="id_sistema_gestion" ColumnName="id_sistema_gestion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Indi_Tipo_Indicador">
+            <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Indi_Tipo_Indicador">
+              <MappingFragment StoreEntitySet="tb_Indi_Tipo_Indicador">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="flag_eliminado" ColumnName="flag_eliminado" />
+                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Orga_Estados">
+            <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Orga_Estados">
+              <MappingFragment StoreEntitySet="tb_Orga_Estados">
+                <ScalarProperty Name="Flag_Eliminado" ColumnName="Flag_Eliminado" />
+                <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+                <ScalarProperty Name="Usuario_Creacion" ColumnName="Usuario_Creacion" />
+                <ScalarProperty Name="Id_Estado" ColumnName="Id_Estado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Indi_Indicador_Alimentar">
+            <EntityTypeMapping TypeName="BDGestionIntegradaModel.tb_Indi_Indicador_Alimentar">
+              <MappingFragment StoreEntitySet="tb_Indi_Indicador_Alimentar">
+                <ScalarProperty Name="mes_alimentacion" ColumnName="mes_alimentacion" />
+                <ScalarProperty Name="anio_alimentacion" ColumnName="anio_alimentacion" />
+                <ScalarProperty Name="meta_maxima" ColumnName="meta_maxima" />
+                <ScalarProperty Name="meta_nominal" ColumnName="meta_nominal" />
+                <ScalarProperty Name="meta_minima" ColumnName="meta_minima" />
+                <ScalarProperty Name="flag_eliminado" ColumnName="flag_eliminado" />
+                <ScalarProperty Name="denominador" ColumnName="denominador" />
+                <ScalarProperty Name="numerador" ColumnName="numerador" />
+                <ScalarProperty Name="id_indicador" ColumnName="id_indicador" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
